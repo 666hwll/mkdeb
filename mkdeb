@@ -1,0 +1,21 @@
+#!/usr/bin/bash
+read -p "What is the name of the project? " prjtnm
+read -p "What architecture is the project utilizing? " arch
+read -p "How would you describe the project? " descr
+read -p "What do you type in to execute the programm? " exnm
+read -p "Is it supposed to run in the terminal(true/false)? " trm
+read -p "Notify at startup(true/false)? " strt
+mkdir debianrel 
+cd debianrel
+mkdir DEBIAN 
+mkdir usr 
+cd DEBIAN 
+echo -e "Package: $prjtnm\nVersion: 0.0.1\nArchitecture: $arch\nMaintainer: $USER\nDescription: $descr" >> control 
+cd .. 
+cd usr 
+mkdir bin 
+mkdir share 
+cd share 
+mkdir applications 
+cd applications  
+echo -e "[Desktop Entry]\nEncoding=UTF-8\nName=$prjtnm\nComment=$descr\nExec=$exnm\nIcon=system\nTerminal=$trm\nStartupNotify=$strt\nType=Application\nCategories=Utility" >> $prjtnm.desktop
